@@ -1,0 +1,23 @@
+<configuration>
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <!-- reset all previous level configurations of all j.u.l. loggers -->
+        <resetJUL>true</resetJUL>
+    </contextListener>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd} %d{HH:mm:ss.SSS} %5p | %-25.25logger{25} | %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="TRACE">
+        <appender-ref ref="STDOUT" />
+    </root>
+    <!-- We want error logging from this logger to go to an extra appender
+         It still inherits CONSOLE STDOUT from the root logger -->
+    <logger name="junit" level="INFO">
+        <appender-ref ref="STDOUT" />
+    </logger>
+</configuration>
